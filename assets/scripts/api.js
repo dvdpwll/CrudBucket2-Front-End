@@ -2,14 +2,14 @@
 
 const app = require('./app');
 
-//change this later with true path
 let path;
 
 const signUp = function (data) {
   return $.ajax({
     url: app.api + '/sign-up',
     method: 'POST',
-    data, //data: data,
+    //data: data,
+    data,
   });
 };
 
@@ -17,7 +17,7 @@ const signIn = function (data) {
   return $.ajax({
     url: app.api + '/sign-in',
     method: 'POST',
-    data, //data: data,
+    data,
   });
 };
 
@@ -40,7 +40,6 @@ const signOut = () => $.ajax({
   },
 });
 
-//folder apis
 const createRootFolder = function (data) {
   return $.ajax({
     url: app.api + '/rootfolders',
@@ -49,9 +48,7 @@ const createRootFolder = function (data) {
   });
 };
 
-//folder apis
 const createFolder = function (data) {
-  // console.log(app.user._id);
   return $.ajax({
     url: app.api + '/folders',
     method: 'POST',
@@ -64,7 +61,6 @@ const createFolder = function (data) {
 
 const showFolders = function (data) {
   for (let i = 0; i < data.folders.length; i++) {
-    //change this later with true path
     if (data.folders[i].path === path) {
       console.log(data.folders[i].name);
     }
@@ -91,7 +87,6 @@ const getFolders = function () {
 };
 
 const getUsers = function () {
-  // console.log('show');
   return $.ajax({
     url: app.api + '/users',
     method: 'GET',

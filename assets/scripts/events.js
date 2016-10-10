@@ -2,48 +2,24 @@
 
 const getFormFields = require('../../lib/get-form-fields');
 const app = require('./app');
-
 const api = require('./api');
 const ui = require('./ui');
 
-
-
-
 const displayUserFolder = function(data){
-  console.log(data);
   let userFolderTemplate = require('./templates/current-user-folders.handlebars');
     $('#main-content').html(userFolderTemplate({
       folders: data.folders
     }));
 };
 
-
-
 const displayUserFile = function(data){
-  console.log('send to handlebars');
-  console.log(data);
   let userFileTemplate = require('./templates/current-user-files.handlebars');
     $('#main-content').append(userFileTemplate({
       files: data.files
     }));
 };
 
-// const refreshPage = function() {
-//   let path = app.currentPath;
-//
-//   console.log(path);
-//
-//   api.showRootFolder(path)
-//     .done()
-//     .fail();
-//   api.showRootFiles(path)
-//     .done(displayUserFile)
-//     .fail();
-// };
-
-
 const displayOtherUserFolder = function(data){
-  console.log(data);
   let otherUserFolderTemplate = require('./templates/other-users-folder.handlebars');
     $('#main-content').html(otherUserFolderTemplate({
       folders: data.folders
@@ -51,16 +27,11 @@ const displayOtherUserFolder = function(data){
 };
 
 const displayOtherUserFile = function(data){
-  console.log(data);
   let otherUserFileTemplate = require('./templates/other-users-file.handlebars');
     $('#main-content').append(otherUserFileTemplate({
       files: data.files
     }));
 };
-
-
-
-
 
 const createRootFolder = function (data) {
   let folderData = {
@@ -80,7 +51,6 @@ const onSignUp = function (event) {
   let data = getFormFields(event.target);
   event.preventDefault();
 
-  // console.log(data);
   api.signUp(data)
       .done(createRootFolder)
       .fail(ui.failure);
@@ -91,8 +61,6 @@ const openFolder = function (newPath) {
   app.currentPath = newPath;
 
   let search = app.currentPath;
-
-  // console.log(search);
 
   api.showRootFolder(search)
     .done(displayUserFolder)
@@ -107,8 +75,6 @@ const openOtherFolder = function (newPath) {
 
   let search = app.currentPath;
 
-  // console.log(search);
-
   api.showRootFolder(search)
     .done(displayOtherUserFolder)
     .fail(ui.onError);
@@ -118,12 +84,9 @@ const openOtherFolder = function (newPath) {
 };
 
 const getRootContents = function (data) {
-  //save current path
   app.currentPath = `${app.currentPath},${data.folders[0]._id}`;
 
   let search = app.currentPath;
-
-  // console.log(search);
 
   api.showRootFolder(search)
     .done(displayUserFolder)
@@ -134,14 +97,10 @@ const getRootContents = function (data) {
 };
 
 const getRootFolder = function (data) {
-  console.log('getRootFolder');
-  console.log(data);
   app.user = data.user;
   app.currentPath = `,${data.user._id}`;
 
   let search = app.currentPath;
-
-  // console.log(search);
 
   api.showRootFolder(search)
     .done(getRootContents)
@@ -149,12 +108,9 @@ const getRootFolder = function (data) {
 };
 
 const getOtherRootContents = function (data) {
-  //save current path
   app.currentPath = `${app.currentPath},${data.folders[0]._id}`;
 
   let search = app.currentPath;
-
-  // console.log(search);
 
   api.showRootFolder(search)
     .done(displayOtherUserFolder)
@@ -165,7 +121,6 @@ const getOtherRootContents = function (data) {
 };
 
 const displayUsers = function(data){
-  console.log(data);
   let userTemplate = require('./templates/user.handlebars');
   $('.sidebar-nav').html(userTemplate({
       users: data.users,
@@ -187,8 +142,6 @@ const onSignIn = function (event) {
       .done(onGetUsers)
       .fail(ui.failure);
   $('#sign-in').modal('hide');
-
-  // console.log(data);
 };
 
 const onChangePassword = (event) => {
@@ -197,8 +150,6 @@ const onChangePassword = (event) => {
   api.changePassword(data)
       .done(ui.success)
       .fail(ui.failure);
-
-  // console.log(data);
   $('#change-password').modal('hide');
 };
 
@@ -236,11 +187,6 @@ const onCreateFolder = function (event) {
     .fail(ui.onError);
   $('#create-folder').modal('hide');
 };
-
-// const onUpload = function () {
-//
-//
-// };
 
 const onIcon = function (event) {
   let target = $(event.target);
@@ -323,32 +269,6 @@ const onUser = function (event) {
         .done(getOtherRootContents)
         .fail(ui.onError);
   }
-
-
-  // $('.username').on('click', function(){
-  //   let search = ($(this).data("path"));
-  //   app.currentPath = search;
-  //   api.showRootFolder(search)
-  //     .done(getOtherRootContents)
-  //     .fail(ui.onError);
-  // });
-
-
-
-  // if (target.hasClass('rename-button')) {
-  //   let fileId = target.data('fileId');
-  //   let newName = $(target).prev().val();
-  //
-  //     let data = {
-  //       "file" : {
-  //         "name": newName,
-  //       }
-  //     };
-  //
-  //     api.renameFile(data, fileId)
-  //       .done($(target).prevAll('h5:last').text(newName))
-  //       .fail(ui.onError);
-  // }
 };
 
 const addHandlers = () => {
