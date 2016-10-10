@@ -17,7 +17,6 @@ const signOutSuccess = () => {
 };
 
 const createSuccess = () => {
-  console.log('folder created');
 };
 
 module.exports = {

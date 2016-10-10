@@ -1,9 +1,18 @@
 'use strict';
 
 const app = require('./app');
+let path; //***********
 
-let path;
+// after sign up create a root folder for new user
+const createRootFolder = function (data) {
+  return $.ajax({
+    url: app.api + '/rootfolders',
+    method: 'POST',
+    data,
+  });
+};
 
+// create a new user
 const signUp = function (data) {
   return $.ajax({
     url: app.api + '/sign-up',
@@ -13,6 +22,27 @@ const signUp = function (data) {
   });
 };
 
+// get root files
+const showRootFiles = (path) => $.ajax({
+  url: app.api + '/rootfiles/' + path,
+  method: 'GET',
+});
+
+// get root folder
+const showRootFolder = (path) => $.ajax({
+  url: app.api + '/rootfolders/' + path,
+  method: 'GET',
+});
+
+// get all users
+const getUsers = function () {
+  return $.ajax({
+    url: app.api + '/users',
+    method: 'GET',
+  });
+};
+
+// sign in a user
 const signIn = function (data) {
   return $.ajax({
     url: app.api + '/sign-in',
@@ -21,6 +51,7 @@ const signIn = function (data) {
   });
 };
 
+// change the password
 const changePassword = function (data) {
   return $.ajax({
     url: app.api + '/change-password/' + app.user._id,
@@ -32,6 +63,7 @@ const changePassword = function (data) {
   });
 };
 
+// sign out the user
 const signOut = () => $.ajax({
   url: app.api + '/sign-out/' + app.user._id,
   method: 'DELETE',
@@ -40,14 +72,7 @@ const signOut = () => $.ajax({
   },
 });
 
-const createRootFolder = function (data) {
-  return $.ajax({
-    url: app.api + '/rootfolders',
-    method: 'POST',
-    data,
-  });
-};
-
+// create a new folder
 const createFolder = function (data) {
   return $.ajax({
     url: app.api + '/folders',
@@ -59,62 +84,7 @@ const createFolder = function (data) {
   });
 };
 
-const showFolders = function (data) {
-  for (let i = 0; i < data.folders.length; i++) {
-    if (data.folders[i].path === path) {
-      console.log(data.folders[i].name);
-    }
-  }
-};
-
-const showRootFolder = (path) => $.ajax({
-  url: app.api + '/rootfolders/' + path,
-  method: 'GET',
-});
-
-const showRootFiles = (path) => $.ajax({
-  url: app.api + '/rootfiles/' + path,
-  method: 'GET',
-});
-
-const getFolders = function () {
-  return $.ajax({
-    url: app.api + '/folders',
-    method: 'GET',
-  }).done(function (data) {
-      showFolders(data);
-    });
-};
-
-const getUsers = function () {
-  return $.ajax({
-    url: app.api + '/users',
-    method: 'GET',
-  });
-};
-
-const getMyFolders = function () {
-  return $.ajax({
-    url: app.api + '/userfolders',
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-  }).done(function (data) {
-      console.log(data);
-    });
-};
-
-const deleteFile = function(fileId) {
-  return $.ajax({
-    url: app.api + '/files/' + fileId,
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-  });
-};
-
+// rename file
 const renameFile = function(data, fileId) {
   return $.ajax({
     url: app.api + '/files/' + fileId,
@@ -126,6 +96,18 @@ const renameFile = function(data, fileId) {
   });
 };
 
+// delete a file
+const deleteFile = function(fileId) {
+  return $.ajax({
+    url: app.api + '/files/' + fileId,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+  });
+};
+
+// rename a folder
 const renameFolder = function(data, folderId) {
   return $.ajax({
     url: app.api + '/folders/' + folderId,
@@ -137,6 +119,7 @@ const renameFolder = function(data, folderId) {
   });
 };
 
+// delete a folder
 const deleteFolder = function(folderId) {
   return $.ajax({
     url: app.api + '/folders/' + folderId,
@@ -154,8 +137,6 @@ module.exports = {
   changePassword,
   createFolder,
   getUsers,
-  getFolders,
-  getMyFolders,
   createRootFolder,
   showRootFolder,
   showRootFiles,
