@@ -1,26 +1,21 @@
 'use strict';
 
 const app = require('./app');
-let path; //***********
 
 // after sign up create a root folder for new user
-const createRootFolder = function (data) {
-  return $.ajax({
-    url: app.api + '/rootfolders',
-    method: 'POST',
-    data,
-  });
-};
+const createRootFolder = (data) => $.ajax({
+  url: app.api + '/rootfolders',
+  method: 'POST',
+  data,
+});
 
 // create a new user
-const signUp = function (data) {
-  return $.ajax({
-    url: app.api + '/sign-up',
-    method: 'POST',
-    //data: data,
-    data,
-  });
-};
+const signUp = (data) => $.ajax({
+  url: app.api + '/sign-up',
+  method: 'POST',
+  //data: data,
+  data,
+});
 
 // get root files
 const showRootFiles = (path) => $.ajax({
@@ -35,33 +30,27 @@ const showRootFolder = (path) => $.ajax({
 });
 
 // get all users
-const getUsers = function () {
-  return $.ajax({
-    url: app.api + '/users',
-    method: 'GET',
-  });
-};
+const getUsers = () => $.ajax({
+  url: app.api + '/users',
+  method: 'GET',
+});
 
 // sign in a user
-const signIn = function (data) {
-  return $.ajax({
-    url: app.api + '/sign-in',
-    method: 'POST',
-    data,
-  });
-};
+const signIn = (data) => $.ajax({
+  url: app.api + '/sign-in',
+  method: 'POST',
+  data,
+});
 
 // change the password
-const changePassword = function (data) {
-  return $.ajax({
-    url: app.api + '/change-password/' + app.user._id,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-    data: data,
-  });
-};
+const changePassword = (data) => $.ajax({
+  url: app.api + '/change-password/' + app.user._id,
+  method: 'PATCH',
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+  data,
+});
 
 // sign out the user
 const signOut = () => $.ajax({
@@ -73,62 +62,52 @@ const signOut = () => $.ajax({
 });
 
 // create a new folder
-const createFolder = function (data) {
-  return $.ajax({
-    url: app.api + '/folders',
-    method: 'POST',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-    data,
-  });
-};
+const createFolder = (data) => $.ajax({
+  url: app.api + '/folders',
+  method: 'POST',
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+  data,
+});
 
 // rename file
-const renameFile = function(data, fileId) {
-  return $.ajax({
-    url: app.api + '/files/' + fileId,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-    data,
-  });
-};
+const renameFile = (data, fileId) => $.ajax({
+  url: app.api + '/files/' + fileId,
+  method: 'PATCH',
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+  data,
+});
 
 // delete a file
-const deleteFile = function(fileId) {
-  return $.ajax({
-    url: app.api + '/files/' + fileId,
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-  });
-};
+const deleteFile = (fileId) => $.ajax({
+  url: app.api + '/files/' + fileId,
+  method: 'DELETE',
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+});
 
 // rename a folder
-const renameFolder = function(data, folderId) {
-  return $.ajax({
-    url: app.api + '/folders/' + folderId,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-    data,
-  });
-};
+const renameFolder = (data, folderId) => $.ajax({
+  url: app.api + '/folders/' + folderId,
+  method: 'PATCH',
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+  data,
+});
 
 // delete a folder
-const deleteFolder = function(folderId) {
-  return $.ajax({
-    url: app.api + '/folders/' + folderId,
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Token token=' + app.user.token,
-    },
-  });
-};
+const deleteFolder = (folderId) => $.ajax({
+  url: app.api + '/folders/' + folderId,
+  method: 'DELETE',
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+});
 
 module.exports = {
   signUp,
