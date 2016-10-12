@@ -36,6 +36,17 @@ const onSignUp = function (event) {
 
 // display user folders
 const displayUserFolder = function(data){
+  //make createdat and updatedat look better
+  for (let i = 0; i < data.folders.length; i++) {
+    //split date-time string into date and timef
+    let strSplitC = data.folders[i].createdAt.split('T');
+    let strSplitU = data.folders[i].updatedAt.split('T');
+
+    //put only date into data
+    data.folders[i].createdAt = strSplitC[0];
+    data.folders[i].updatedAt = strSplitU[0];
+  }
+
   //handlebars
   let userFolderTemplate = require('./templates/current-user-folders.handlebars');
     $('#main-content').html(userFolderTemplate({
@@ -45,6 +56,17 @@ const displayUserFolder = function(data){
 
 // display user files
 const displayUserFile = function(data){
+  //make createdat and updatedat look better
+  for (let i = 0; i < data.files.length; i++) {
+    //split date-time string into date and timef
+    let strSplitC = data.files[i].createdAt.split('T');
+    let strSplitU = data.files[i].updatedAt.split('T');
+
+    //put only date into data
+    data.files[i].createdAt = strSplitC[0];
+    data.files[i].updatedAt = strSplitU[0];
+  }
+
   //handlebars
   let userFileTemplate = require('./templates/current-user-files.handlebars');
     $('#main-content').append(userFileTemplate({
@@ -144,6 +166,15 @@ const OnSignOut = function (event) {
 
 // add folder to UI
 const addOneFolder = (data) => {
+  //split date-time string into date and timef
+  let strSplitC = data.folder.createdAt.split('T');
+  let strSplitU = data.folder.updatedAt.split('T');
+
+  //put only date into data
+  data.folder.createdAt = strSplitC[0];
+  data.folder.updatedAt = strSplitU[0];
+
+
   //handlebars
   let userFolderTemplate = require('./templates/current-user-folder.handlebars');
     $('#main-content').append(userFolderTemplate({
@@ -176,6 +207,14 @@ const onCreateFolder = function (event) {
 
 // add file to UI
 const addOneFile = (data) => {
+  //split date-time string into date and timef
+  let strSplitC = data.file.createdAt.split('T');
+  let strSplitU = data.file.updatedAt.split('T');
+
+  //put only date into data
+  data.file.createdAt = strSplitC[0];
+  data.file.updatedAt = strSplitU[0];
+
   //handlebars
   let userFileTemplate = require('./templates/current-user-file.handlebars');
     $('#main-content').append(userFileTemplate({
@@ -208,6 +247,17 @@ const openFolder = function (newPath) {
 
 // display other users folders
 const displayOtherUserFolder = function(data){
+  //make createdat and updatedat look better
+  for (let i = 0; i < data.folders.length; i++) {
+    //split date-time string into date and timef
+    let strSplitC = data.folders[i].createdAt.split('T');
+    let strSplitU = data.folders[i].updatedAt.split('T');
+
+    //put only date into data
+    data.folders[i].createdAt = strSplitC[0];
+    data.folders[i].updatedAt = strSplitU[0];
+  }
+
   //handlebars
   let otherUserFolderTemplate = require('./templates/other-users-folder.handlebars');
     $('#main-content').html(otherUserFolderTemplate({
@@ -217,6 +267,17 @@ const displayOtherUserFolder = function(data){
 
 // display other users files
 const displayOtherUserFile = function(data){
+  //make createdat and updatedat look better
+  for (let i = 0; i < data.files.length; i++) {
+    //split date-time string into date and timef
+    let strSplitC = data.files[i].createdAt.split('T');
+    let strSplitU = data.files[i].updatedAt.split('T');
+
+    //put only date into data
+    data.files[i].createdAt = strSplitC[0];
+    data.files[i].updatedAt = strSplitU[0];
+  }
+
   //handlebars
   let otherUserFileTemplate = require('./templates/other-users-file.handlebars');
     $('#main-content').append(otherUserFileTemplate({
