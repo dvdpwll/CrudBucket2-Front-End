@@ -155,7 +155,7 @@ const onChangePassword = (event) => {
   $('#change-password').modal('hide');
 };
 
-// sign out the ser
+// sign out the user
 const OnSignOut = function (event) {
   event.preventDefault(); //wont need this when I get rid of submit button
 
@@ -466,10 +466,33 @@ const uploadFile = function (event) {
     .fail(err => console.error(err));
 };
 
+// sign out the ser
+const upLevel = function () {
+  //get current path
+  let path = app.currentPath;
+
+  //split then reassemble w/o last segment of path
+  let strSplit = path.split(',');
+  let newPath = '';
+
+  if (strSplit.length > 3) {
+    for (let i = 1; i < (strSplit.length - 1); i++) {
+      newPath = newPath + ',' + strSplit[i];
+    }
+  }
+  else {
+    newPath = path;
+  }
+
+  //send newPath
+  openFolder(newPath);
+};
+
 // handlers
 const addHandlers = () => {
   $('.create-folder').hide();
   $('.upload-file').hide();
+  $('#up-button').hide();
   $('.users').hide();
   $('.icon-div').on('click', onIcon);
   $('.sidebar-nav').on('click', onUser);
@@ -480,6 +503,7 @@ const addHandlers = () => {
   $('.create-folder-form').on('submit', onCreateFolder);
   $('#my-folder').on('click', api.getMyFolders);
   $('#multipart-form-data').on('submit', uploadFile);
+  $('#up-button').on('click', upLevel);
 };
 
 module.exports = {

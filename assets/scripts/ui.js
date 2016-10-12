@@ -13,6 +13,7 @@ const failure = (error) => {
 const signInSuccess = () => {
   $('#sign-up-button').hide();
   $('#sign-in-button').hide();
+  $('#up-button').show();
   $('.create-folder').show();
   $('.upload-file').show();
   $('.users').show();
