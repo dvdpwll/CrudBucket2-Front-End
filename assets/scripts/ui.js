@@ -10,10 +10,17 @@ const failure = (error) => {
   console.error(error);
 };
 
+const signInSuccess = () => {
+  $('#sign-up-button').hide();
+  $('#sign-in-button').hide();
+};
+
 const signOutSuccess = () => {
   delete app.user;
   $('.icon-div').empty();
   $('.sidebar-nav').empty();
+  $('#sign-up-button').show();
+  $('#sign-in-button').show();
 };
 
 const createSuccess = () => {
@@ -22,6 +29,7 @@ const createSuccess = () => {
 module.exports = {
   failure,
   success,
+  signInSuccess,
   signOutSuccess,
   app,
   createSuccess,

@@ -109,6 +109,18 @@ const deleteFolder = (folderId) => $.ajax({
   },
 });
 
+// upload a file to aws
+const uploadAWS = (data) => $.ajax({
+  url: app.api + '/files',
+  method: 'POST',
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+  processData: false,
+  contentType: false,
+  data,
+});
+
 module.exports = {
   signUp,
   signIn,
@@ -123,4 +135,5 @@ module.exports = {
   renameFile,
   renameFolder,
   deleteFolder,
+  uploadAWS,
 };

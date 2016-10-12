@@ -114,6 +114,7 @@ const onSignIn = function (event) {
   api.signIn(data)
       .done(getRootFolder)
       .done(onGetUsers)
+      .done(ui.signInSuccess)
       .fail(ui.failure);
 
   $('#sign-in').modal('hide');
@@ -381,6 +382,21 @@ const onUser = function (event) {
   }
 };
 
+// upload file
+const uploadFile = function (event) {
+  event.preventDefault();
+  let data = new FormData(this);
+
+  // add path to data
+  data.append('path', app.currentPath);
+
+  // send to amazon web service
+  api.uploadAWS(data)
+    .done(addOneFile)
+    .done($('#upload-file').modal('hide'))
+    .fail(err => console.error(err));
+};
+
 // handlers
 const addHandlers = () => {
   $('.icon-div').on('click', onIcon);
@@ -391,28 +407,7 @@ const addHandlers = () => {
   $('#sign-out').on('click', OnSignOut);
   $('.create-folder-form').on('submit', onCreateFolder);
   $('#my-folder').on('click', api.getMyFolders);
-  //upload a file, move this out
-  $('#multipart-form-data').on('submit', function (event) {
-    event.preventDefault();
-    let data = new FormData(this);
-
-    // add path to data-path
-    data.append('path', app.currentPath);
-
-    // move this to api.js
-    return $.ajax({
-      url: app.api + '/files',
-      method: 'POST',
-      headers: {
-        Authorization: 'Token token=' + app.user.token,
-      },
-      processData: false,
-      contentType: false,
-      data,
-    }).done(addOneFile)
-    .done($('#upload-file').modal('hide'))
-    .fail(err => console.error(err));
-  });
+  $('#multipart-form-data').on('submit', uploadFile);
 };
 
 module.exports = {
