@@ -466,7 +466,7 @@ const uploadFile = function (event) {
     .fail(err => console.error(err));
 };
 
-// sign out the ser
+// go up one folder level
 const upLevel = function () {
   //get current path
   let path = app.currentPath;
@@ -474,7 +474,6 @@ const upLevel = function () {
   //split then reassemble w/o last segment of path
   let strSplit = path.split(',');
   let newPath = '';
-
   if (strSplit.length > 3) {
     for (let i = 1; i < (strSplit.length - 1); i++) {
       newPath = newPath + ',' + strSplit[i];
@@ -488,11 +487,44 @@ const upLevel = function () {
   openFolder(newPath);
 };
 
+// go to root
+const goRoot = function () {
+  //get current path
+  let path = app.currentPath;
+
+  //split then reassemble with only the first two paths
+  let strSplit = path.split(',');
+  let newPath = '';
+  for (let i = 1; i < 3; i++) {
+    newPath = newPath + ',' + strSplit[i];
+  }
+
+  //send newPath
+  openFolder(newPath);
+};
+
+// go to home root
+const goHome = function () {
+  console.log('home');
+  //set current folder path
+  app.currentPath = `,${app.user._id}`;
+
+  // get current path to open root
+  let search = app.currentPath;
+
+  // send data
+  api.showRootFolder(search)
+    .done(getRootContents)
+    .fail(ui.onError);
+};
+
 // handlers
 const addHandlers = () => {
   $('.create-folder').hide();
   $('.upload-file').hide();
   $('#up-button').hide();
+  $('#root-button').hide();
+  $('#home-button').hide();
   $('.users').hide();
   $('.icon-div').on('click', onIcon);
   $('.sidebar-nav').on('click', onUser);
@@ -504,6 +536,8 @@ const addHandlers = () => {
   $('#my-folder').on('click', api.getMyFolders);
   $('#multipart-form-data').on('submit', uploadFile);
   $('#up-button').on('click', upLevel);
+  $('#root-button').on('click', goRoot);
+  $('#home-button').on('click', goHome);
 };
 
 module.exports = {

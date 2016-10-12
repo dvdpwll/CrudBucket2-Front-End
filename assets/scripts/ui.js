@@ -14,6 +14,8 @@ const signInSuccess = () => {
   $('#sign-up-button').hide();
   $('#sign-in-button').hide();
   $('#up-button').show();
+  $('#root-button').show();
+  $('#home-button').show();
   $('.create-folder').show();
   $('.upload-file').show();
   $('.users').show();
