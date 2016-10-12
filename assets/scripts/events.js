@@ -425,11 +425,19 @@ const onUser = function (event) {
 
   // if user clicks on their own username
   if (target.data('id') === app.user._id) {
+    //show buttons
+    $('.create-folder').show();
+    $('.upload-file').show();
+
     //open their own root folder
     getRootFolder(app);
   }
   // if user clicks on any other user
   else {
+    //hide buttons
+    $('.create-folder').hide();
+    $('.upload-file').hide();
+
     // get path for search
     let search = target.data('path');
 
@@ -460,6 +468,9 @@ const uploadFile = function (event) {
 
 // handlers
 const addHandlers = () => {
+  $('.create-folder').hide();
+  $('.upload-file').hide();
+  $('.users').hide();
   $('.icon-div').on('click', onIcon);
   $('.sidebar-nav').on('click', onUser);
   $('.sign-up-form').on('submit', onSignUp);
