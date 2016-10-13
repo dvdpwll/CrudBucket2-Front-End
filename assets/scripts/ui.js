@@ -27,6 +27,9 @@ const signOutSuccess = () => {
   $('.sidebar-nav').empty();
   $('#sign-up-button').show();
   $('#sign-in-button').show();
+  $('#up-button').hide();
+  $('#root-button').hide();
+  $('#home-button').hide();
 };
 
 const createSuccess = () => {
