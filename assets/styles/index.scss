@@ -46,6 +46,11 @@ button {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 13px;
   padding-top: 40px;
+  text-align: center;
+}
+.start-message-info {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
   padding-bottom: 30px;
   text-align: center;
 }
@@ -137,4 +142,10 @@ button {
   font-size: 16px;
   padding-right: 50px;
   margin-left: 50px;
+}
+
+footer {
+  margin-top: 25px;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
 }
