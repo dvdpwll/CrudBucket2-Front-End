@@ -2,6 +2,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'forms';
 @import 'simple-sidebar';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 button {
   margin: 0 2px;
@@ -24,17 +25,127 @@ button {
 }
 
 .start-message {
-  color: #0099cc;
-  font-family: sans-serif;
-  font-size: 70px;
+  color: #f5a623;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
   margin: auto;
-  padding-top: 150px;
+  padding-top: 75px;
   text-align: center;
 }
 
 .start-message-desc {
   color: gray;
   font-family: sans-serif;
-  font-size: 24px;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.start-message-inst {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  padding-top: 40px;
+  text-align: center;
+}
+.start-message-info {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.start-img {
+  display: block;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.section-orange {
+  overflow: auto;
+  background-color: #f5a623;
+  width: 100%;
+  height: 350px;
+  color: white;
+  text-align: center;
+}
+
+.section-white {
+  overflow: auto;
+  width: 100%;
+  height: 350px;
+  text-align: center;
+}
+
+.sub-section {
+  // border-style: solid;
+  // border-width: medium;
+  // border-color: black;
+  width: 400px;
+  display: inline-block;
+  height: 250px;
+  margin-top: 25px;
+}
+
+.sub-section-image {
+  margin-right: 50px;
+}
+
+// .sub-section-2images {
+//   overflow: auto;
+//   width: 500px;
+//   // height: 250px;
+// }
+
+.img2 {
+  width: 256px;
+  height: 256px;
+  box-shadow: 2px 2px 15px #888888;
+}
+
+.img3 {
+  // display: inline-block;
+  width: 228px;
+  height: 128px;
+  box-shadow: 2px 2px 15px #888888;
+}
+
+.img4 {
+  // display: inline-block;
+  width: 223px;
+  height: 152px;
+  box-shadow: 2px 2px 15px #888888;
+}
+
+.img5 {
+  width: 349px;
+  height: 218px;
+  box-shadow: 2px 2px 15px #888888;
+}
+
+.sub-section-text {
+  margin-right: 50px;
+}
+
+.sub-section-text > h4{
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: left;
+  font-weight: bold;
+  font-size: 22px;
+  padding-top: 50px;
+  margin-left: 50px;
+}
+
+.sub-section-text > p{
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: left;
+  font-size: 16px;
+  padding-right: 50px;
+  margin-left: 50px;
+}
+
+footer {
+  margin-top: 25px;
+  font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
 }
